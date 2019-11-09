@@ -1,4 +1,0 @@
-matplotlib
-numpy>=1.11.0
-unityagents==0.4.0
-torch==0.4.0
