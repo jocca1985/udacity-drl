@@ -39,6 +39,8 @@ class PrioritizedReplayBuffer:
         e = self.experience(state, action, reward, next_state, done)
         self.experiences.append(e)
         self.sum_tree[self.tree_ptr] = self.max_priority ** self.alpha
+        print(self.sum_tree[self.tree_ptr])
+        print(self.tree_ptr)
         self.min_tree[self.tree_ptr] = self.max_priority ** self.alpha
         self.tree_ptr = (self.tree_ptr + 1) % self.buffer_size
         

@@ -52,13 +52,15 @@ def dqn(n_episodes=1000, max_t=1000):
     scores = []                        # list containing scores from each episode
     scores_window = deque(maxlen=100)  # last 100 scores
     solved = False
+    beta = 0.4
     for i_episode in range(1, n_episodes+1):
+        beta = max(1, beta+0.001)
         state = reset()
         score = 0
         for t in range(max_t):
             action = agent.act(state)
             next_state, reward, done = step(action)
-            agent.step(state, action, reward, next_state, done)
+            agent.step(state, action, reward, next_state, done, beta)
             state = next_state
             score += reward
             if done:

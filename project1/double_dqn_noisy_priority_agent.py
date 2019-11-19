@@ -17,7 +17,7 @@ LR = 5e-4               # learning rate
 UPDATE_EVERY = 4        # how often to update the network
 #PQ params
 ALPHA = 0.6
-BETA = 0.4
+# BETA = 0.4
 PRIOR_EPS = 1e-3
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -49,7 +49,7 @@ class Agent():
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
     
-    def step(self, state, action, reward, next_state, done):
+    def step(self, state, action, reward, next_state, done, beta):
         # Save experience in replay memory
         self.memory.add(state, action, reward, next_state, done)
         
@@ -58,7 +58,7 @@ class Agent():
         if self.t_step == 0:
             # If enough samples are available in memory, get random subset and learn
             if len(self.memory) > BATCH_SIZE:
-                experiences = self.memory.sample(BETA)
+                experiences = self.memory.sample(beta)
                 self.learn(experiences, GAMMA)
 
     def act(self, state):
