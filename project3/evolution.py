@@ -14,7 +14,7 @@ class EvolutionStrategies(torch.nn.Module):
         fc2_units = 100
         self.bn1 = nn.BatchNorm1d(fc1_units) 
         self.linear1 = nn.Linear(inputs, fc1_units)
-        self.linear2 = nn.Linear(fc1_units, outputs)
+        self.linear2 = nn.Linear(fc1_units, fc2_units)
         self.linear3 = nn.Linear(fc2_units, outputs)
         self.population_size = 80
         self.sigma = 0.25
